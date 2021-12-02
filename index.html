@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <title>Frontend Mentor | E-commerce product page</title>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="hamburgerMenu">
+                <div class="hamburger">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+                <h1><a href="index.html"></a>!ALLWARE></h1>
+                <nav class="menu hidden">
+                    <div class="slideMenu">
+                        <img id="btnMenuClose" src="./assets/images/icon-close.svg" alt="icon close">
+                        <ul>
+                            <li><a href="#">Inicio</a></li>
+                            <li><a href="#">Categorias</a></li>
+                            <li><a href="#">Sobre nosotros</a></li>
+                            <li><a href="#">Redes</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <div class="cartAvatar">
+                <div class="btnCart">
+                    <img src="./assets/images/icon-cart.svg" alt="cart icon">
+                    <div class="cartCount hidden">3</div>
+                </div>
+                <img class="avatar" src="./assets/images/image-avatar.png" alt="image avatar">
+            </div>
+            <div class="cart hidden">
+                <div class="cartHeader">Cart</div>
+                <div class="productsInCart"></div>
+                <div class="msgEmpty">Your cart is empty.</div>
+                <div class="checkout hidden">Checkout</div>
+            </div>
+        </header>
+        <div class="content">
+            <section class="lightbox">
+                <img class="productHero" src="./assets/images/image-product-1.jpg" alt="image product">
+                <div class="previous arrow">
+                    <img src="./assets/images/icon-previous.svg" alt="icon previous">
+                </div>
+                <div class="next arrow">
+                    <img src="./assets/images/icon-next.svg" alt="icon next">
+                </div>
+                <div class="thumbGallery">
+                    <div class="pic active">
+                        <img src="./assets/images/image-product-1.jpg" alt="thumb-1">
+                    </div>
+                    <div class="pic">
+                        <img src="./assets/images/image-product-2.jpg" alt="thumb-2">
+                    </div>
+                    <div class="pic">
+                        <img src="./assets/images/image-product-3.jpg" alt="thumb-3">
+                    </div>
+                    <div class="pic">
+                        <img src="./assets/images/image-product-4.jpg" alt="thumb-4">
+                    </div>
+                </div>
+            </section>
+            <section class="product">
+                <div class="companyName">ALLWARE</div>
+                <div class="title">Notebook Asus Zenbook Duo Intel Core I5 11va 16GB 512GB</div>
+                <div class="description">
+                    Modelo: UX482EG-KA186T
+                    <br> Procesador: Intel Core i5-1135G7 Processor 2.4 GHz
+                    <br> Memoria: 16GB LPDDR4X on board
+                    <br> Almacenamiento: 512GB M.2 NVMe™ PCIe® 3.0 SSD
+                    <br> Gráfica: NVIDIA® GeForce® MX450
+                    <br> Pantalla: 14" FHD (1920 x 1080) 16:9
+                </div>
+                <div class="priceWrapper">
+                    <div class="group">
+                        <div class="price">$119999.50</div>
+                        <div class="discount">50%</div>
+                    </div>
+                    <div class="oldPrice">$239.999</div>
+                </div>
+                <div class="countBtnGroup">
+                    <div class="counterWrapper">
+                        <img id="btnMinus" src="./assets/images/icon-minus.svg" alt="icon minus">
+                        <div class="counter">1</div>
+                        <img id="btnPlus" src="./assets/images/icon-plus.svg" alt="icon plus">
+                    </div>
+                    <div class="btn">
+                        <img src="./assets/images/icon-cart.svg" alt="icon cart">
+                        <p>Add to cart</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="overlay hidden">
+            <div class="btnClose">
+                <img id="btnOverlayClose" src="./assets/images/icon-close.svg" alt="lightbox close">
+            </div>
+        </div>
+    </div>
+    <script src="js/index.js"></script>
+</body>
+
+</html>

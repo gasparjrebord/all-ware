@@ -1,0 +1,9 @@
+@mixin laptop {
+	@media screen and (min-width: 1440px) {
+		.container {
+			width: 80%;
+			margin: 0 auto;
+		}
+		@content
+	}
+}

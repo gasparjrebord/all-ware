@@ -1,0 +1,231 @@
+header {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	padding: 1.5rem 2.5rem 2.5rem 2rem;
+	position: relative;
+	@include laptop {
+		padding: 0;
+		border-bottom: 1px solid $grayish-blue;
+	}
+	.hamburgerMenu {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		gap: 1.5rem;
+		@include laptop {
+			gap: 5.5rem;
+		}
+		.hamburger {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			gap: 0.4rem;
+			cursor: pointer;
+			@include laptop {
+				display: none;
+			}
+			.line {
+				background-color: $dark-grayish-blue;
+				width: 1.7rem;
+				height: 0.3rem;
+			}
+		}
+		.menu {
+			background-color: $black;
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			height: 100vh;
+			z-index: 10;
+			@include laptop {
+				display: block;
+				position: unset;
+				height: unset;
+				z-index: unset;
+			}
+			.slideMenu {
+				background-color: $white;
+				height: 100%;
+				width: 65vw;
+				padding: 2.5rem;
+				@include laptop {
+					width: unset;
+					padding: 0;
+				}
+				img {
+					transition: transform 0.5s ease;
+					@include laptop {
+						display: none;
+					}
+					&:hover {
+						cursor: pointer;
+						transform: rotate(90deg);
+					}
+				}
+				ul {
+					margin-top: 5rem;
+					font-size: 2rem;
+					font-weight: 700;
+					display: flex;
+					flex-direction: column;
+					gap: 2.5rem;
+					list-style: none;
+					@include laptop {
+						flex-direction: row;
+						margin: 0;
+						font-size: 1.5rem;
+						font-weight: 400;
+						color: $dark-grayish-blue;
+						gap: 3.5rem;
+					}
+					a,
+					 :active,
+					 :visited {
+						color: $very-dark-blue;
+						text-decoration: unset;
+						@include laptop {
+							display: block;
+							padding: 4rem 0;
+							border-bottom: 3px solid transparent;
+						}
+						&:hover {
+							text-decoration: underline;
+							opacity: 0.75;
+							@include laptop {
+								color: $very-dark-blue;
+								text-decoration: none;
+								font-weight: 700;
+								border-bottom: 3px solid $teal-blue;
+							}
+						}
+					}
+				}
+			}
+		}
+		.hidden {
+			display: none;
+		}
+	}
+	.cartAvatar {
+		//border: 1px solid green;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		gap: 2rem;
+		@include laptop {
+			gap: 4.5rem;
+		}
+		.btnCart {
+			cursor: pointer;
+			position: relative;
+			.cartCount {
+				position: absolute;
+				top: -25%;
+				right: -25%;
+				background-color: $teal-blue;
+				color: $white;
+				font-size: 1rem;
+				font-weight: 700;
+				line-height: 100%;
+				padding: 0.1rem 0.6rem;
+				border-radius: 1rem;
+			}
+		}
+		.avatar {
+			width: 2.5rem;
+			cursor: pointer;
+			border: 2px solid transparent;
+			@include laptop {
+				width: 5rem;
+			}
+			&:hover {
+				border: 2px solid $teal-blue;
+				border-radius: 50%;
+			}
+		}
+	}
+	.cart {
+		position: absolute;
+		right: 1rem;
+		top: calc(calc(100%) + 1rem);
+		width: 35.5rem;
+		z-index: 1;
+		background-color: $white;
+		border-radius: 1rem;
+		box-shadow: 0 1rem 1rem 1rem rgba(0, 0, 0, 0.1), 0 1rem 2rem 1rem rgba(0, 0, 0, 0.1);
+		@include laptop {
+			right: -7rem;
+			top: 90%;
+		}
+		.cartHeader {
+			border-bottom: 1px solid $grayish-blue;
+			padding: 2.5rem 2rem;
+			font-size: 1.5rem;
+			font-weight: 700;
+		}
+		.productsInCart {
+			.item {
+				margin: 2.5rem;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				.productImg {
+					width: 5rem;
+					border-radius: 0.5rem;
+				}
+				.details {
+					color: $dark-grayish-blue;
+					font-size: 1.5rem;
+					line-height: 2.5rem;
+					.priceGroup {
+						display: flex;
+						gap: 0.5rem;
+						.totalAmount {
+							font-weight: 700;
+							font-size: 2rem;
+							color: $black
+						}
+					}
+				}
+				#btnDelete {
+					padding: 0.5rem;
+					border-radius: 0.5rem;
+					&:hover {
+						cursor: pointer;
+						background-color: $pale-teal-blue;
+					}
+				}
+			}
+		}
+		.msgEmpty {
+			color: $dark-grayish-blue;
+			text-align: center;
+			font-size: 2rem;
+			font-weight: 700;
+			padding: 8rem 0;
+		}
+		.checkout {
+			background-color: $teal-blue;
+			color: $white;
+			text-align: center;
+			font-size: 1.5rem;
+			font-weight: 700;
+			margin: 2.5rem;
+			padding: 2rem;
+			border-radius: 1rem;
+			cursor: pointer;
+		}
+		.hidden {
+			display: none;
+		}
+	}
+	.hidden {
+		display: none;
+	}
+}
