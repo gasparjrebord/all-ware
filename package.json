@@ -1,0 +1,30 @@
+{
+  "name": "all-ware",
+  "version": "1.0.0",
+  "description": "Tienda de computacion",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-css": "node-sass --include-path scss sass/styles.scss css/styles.css",
+    "watch-css": "nodemon -e scss -x \"npm run build-css\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gasparjrebord/all-ware.git"
+  },
+  "keywords": [
+    "Computadora",
+    "Pc",
+    "Componentes"
+  ],
+  "author": "Gaspar J. Rebord",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gasparjrebord/all-ware/issues"
+  },
+  "homepage": "https://github.com/gasparjrebord/all-ware#readme",
+  "devDependencies": {
+    "node-sass": "^6.0.1",
+    "nodemon": "^2.0.15"
+  }
+}
