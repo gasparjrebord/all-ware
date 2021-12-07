@@ -1,0 +1,11 @@
+.gridMain {
+    display: grid;
+    grid-template-columns: 15% auto auto 15%;
+    grid-template-rows: 5% 50% auto auto;
+    gap: 5rem 5rem;
+    grid-template-areas: 
+      "header header header header"
+      ". main main ."
+      "section section section section"
+      "footer footer footer footer";
+  }

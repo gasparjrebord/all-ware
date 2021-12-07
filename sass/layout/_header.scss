@@ -1,4 +1,5 @@
 header {
+	grid-area: header;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -90,7 +91,7 @@ header {
 						text-decoration: unset;
 						@include laptop {
 							display: block;
-							padding: 4rem 0;
+							
 							border-bottom: 3px solid transparent;
 						}
 						&:hover {
@@ -109,6 +110,10 @@ header {
 		}
 		.hidden {
 			display: none;
+			@include laptop {
+				display: block;
+
+			}
 		}
 	}
 	.cartAvatar {

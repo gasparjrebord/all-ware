@@ -1,7 +1,6 @@
 @import "utilities/_variables.scss";
 @import "base/_reset.scss";
 @import "utilities/_mixins.scss";
+@import "layout/_grid.scss";
 @import "layout/_header.scss";
-@import "components/_lightbox.scss";
-@import "components/_product.scss";
-@import "layout/_overlay.scss";
+@import "layout/_main.scss";

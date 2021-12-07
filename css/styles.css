@@ -9,7 +9,15 @@ html {
 body {
   font-family: "Kumbh Sans", sans-serif; }
 
+.gridMain {
+  display: grid;
+  grid-template-columns: 15% auto auto 15%;
+  grid-template-rows: 5% 50% auto auto;
+  gap: 5rem 5rem;
+  grid-template-areas: "header header header header" ". main main ." "section section section section" "footer footer footer footer"; }
+
 header {
+  grid-area: header;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -121,7 +129,6 @@ header {
               header .hamburgerMenu .menu .slideMenu ul :active,
               header .hamburgerMenu .menu .slideMenu ul :visited {
                 display: block;
-                padding: 4rem 0;
                 border-bottom: 3px solid transparent; }
                 header .hamburgerMenu .menu .slideMenu ul a .container,
                 header .hamburgerMenu .menu .slideMenu ul :active .container,
@@ -148,6 +155,12 @@ header {
                     margin: 0 auto; } }
     header .hamburgerMenu .hidden {
       display: none; }
+      @media screen and (min-width: 1440px) {
+        header .hamburgerMenu .hidden {
+          display: block; }
+          header .hamburgerMenu .hidden .container {
+            width: 80%;
+            margin: 0 auto; } }
   header .cartAvatar {
     display: flex;
     flex-direction: row;
@@ -254,255 +267,254 @@ header {
   header .hidden {
     display: none; }
 
-@media screen and (min-width: 1440px) {
-  .container {
-    width: 80%;
-    margin: 0 auto; }
-  .content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10rem;
-    padding: 9rem 5rem; } }
-
-.lightbox {
-  position: relative; }
+main {
+  grid-area: main; }
   @media screen and (min-width: 1440px) {
-    .lightbox {
-      width: 100%; }
-      .lightbox .container {
-        width: 80%;
-        margin: 0 auto; } }
-  .lightbox .productHero {
-    width: 100%; }
-    @media screen and (min-width: 1440px) {
-      .lightbox .productHero {
-        border-radius: 1.5rem; }
-        .lightbox .productHero .container {
-          width: 80%;
-          margin: 0 auto; } }
-  .lightbox .previous {
-    left: 5%; }
-    @media screen and (min-width: 1440px) {
-      .lightbox .previous {
-        display: none; }
-        .lightbox .previous .container {
-          width: 80%;
-          margin: 0 auto; } }
-    .lightbox .previous:hover {
-      left: 4%; }
-  .lightbox .next {
-    right: 5%; }
-    @media screen and (min-width: 1440px) {
-      .lightbox .next {
-        display: none; }
-        .lightbox .next .container {
-          width: 80%;
-          margin: 0 auto; } }
-    .lightbox .next:hover {
-      right: 4%; }
-  .lightbox .arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: #ffffff;
-    border-radius: 50%;
-    width: 5rem;
-    height: 5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s ease; }
-  .lightbox .thumbGallery {
-    display: none; }
-    @media screen and (min-width: 1440px) {
-      .lightbox .thumbGallery {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-top: 3rem; }
-        .lightbox .thumbGallery .container {
-          width: 80%;
-          margin: 0 auto; }
-        .lightbox .thumbGallery .pic {
-          display: flex;
-          width: 20%;
-          height: fit-content;
-          overflow: hidden;
-          border-radius: 1rem; }
-          .lightbox .thumbGallery .pic img {
-            width: 100%; }
-            .lightbox .thumbGallery .pic img:hover {
-              opacity: 0.75; }
-        .lightbox .thumbGallery .active {
-          border: 2px solid #0B7189; }
-          .lightbox .thumbGallery .active img {
-            opacity: 0.5; } }
-
-.product {
-  padding: 2rem 2.5rem 4.5rem 2.5rem; }
-  @media screen and (min-width: 1440px) {
-    .product {
-      width: 100%;
-      padding: 3rem 0 3rem 3rem; }
-      .product .container {
-        width: 80%;
-        margin: 0 auto; }
-      .product .countBtnGroup {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 1.5rem;
-        margin-top: 1.5rem; } }
-  .product .companyName {
-    text-transform: uppercase;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #0B7189;
-    letter-spacing: 0.20rem; }
-  .product .title {
-    color: #1d2025;
-    font-size: 3rem;
-    font-weight: 700;
-    margin-top: 1.5rem;
-    line-height: 120%; }
-    @media screen and (min-width: 1440px) {
-      .product .title {
-        font-size: 4.5rem;
-        margin-top: 2rem; }
-        .product .title .container {
-          width: 80%;
-          margin: 0 auto; } }
-  .product .description {
-    font-size: 1.5rem;
-    color: #68707d;
-    line-height: 165%;
-    margin-top: 1.5rem; }
-    @media screen and (min-width: 1440px) {
-      .product .description {
-        margin-top: 3.5rem;
-        font-size: 1.5rem; }
-        .product .description .container {
-          width: 80%;
-          margin: 0 auto; } }
-  .product .priceWrapper {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 2rem; }
-    @media screen and (min-width: 1440px) {
-      .product .priceWrapper {
-        flex-direction: column;
-        align-items: flex-start;
-        margin-top: 2.5rem;
-        gap: 1rem; }
-        .product .priceWrapper .container {
-          width: 80%;
-          margin: 0 auto; } }
-    .product .priceWrapper .group {
+    main .container {
+      width: 80%;
+      margin: 0 auto; }
+    main .content {
       display: flex;
       align-items: center;
-      justify-content: flex-start; }
-      .product .priceWrapper .group .price {
-        font-size: 3rem;
-        font-weight: 700; }
-      .product .priceWrapper .group .discount {
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: #0B7189;
-        background-color: #1DC6ED;
-        margin-left: 1.5rem;
-        padding: 0.5rem 1rem;
-        border-radius: 0.5rem; }
-    .product .priceWrapper .oldPrice {
-      font-size: 2rem;
-      font-weight: 700;
-      color: #b6bcc8;
-      text-decoration: line-through; }
-  .product .counterWrapper {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #f7f8fd;
-    padding: 1.5rem 2.5rem;
-    margin-top: 2rem;
-    border-radius: 1rem; }
+      justify-content: space-between;
+      gap: 10rem;
+      padding: 9rem 5rem; } }
+  main .lightbox {
+    position: relative;
+    height: auto; }
     @media screen and (min-width: 1440px) {
-      .product .counterWrapper {
-        width: 60%;
-        border-radius: 1rem;
-        padding: 1rem 0.5rem; }
-        .product .counterWrapper .container {
-          width: 80%;
-          margin: 0 auto; } }
-    .product .counterWrapper .counter {
-      font-size: 1.5rem;
-      font-weight: 700; }
-    .product .counterWrapper #btnMinus,
-    .product .counterWrapper #btnPlus {
-      cursor: pointer;
-      padding: 1rem;
-      border-radius: 0.5rem; }
-      l
-.product .counterWrapper #btnMinus:hover, l
-      .product .counterWrapper #btnPlus:hover {
-        opacity: 0.5;
-        background-color: #1DC6ED; }
-  .product .btn {
-    background-color: #0B7189;
-    color: #ffffff;
-    margin-top: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1.5rem;
-    font-size: 1.5rem;
-    font-weight: 700;
-    border-radius: 1rem;
-    padding: 2rem;
-    box-shadow: 0px 20px 30px 0px #1DC6ED;
-    cursor: pointer; }
-    .product .btn img {
-      height: 1.5rem;
-      filter: brightness(300%); }
-    @media screen and (min-width: 1440px) {
-      .product .btn {
+      main .lightbox {
         width: 100%; }
-        .product .btn .container {
+        main .lightbox .container {
           width: 80%;
           margin: 0 auto; } }
-
-.overlay {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: #170A1C;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center; }
-  .overlay .btnClose {
-    width: 60rem;
-    text-align: end;
-    padding: 2rem 0; }
-    .overlay .btnClose img {
+    main .lightbox .productHero {
+      height: 50vh;
+      justify-self: center; }
+      @media screen and (min-width: 1440px) {
+        main .lightbox .productHero {
+          border-radius: 1.5rem; }
+          main .lightbox .productHero .container {
+            width: 80%;
+            margin: 0 auto; } }
+    main .lightbox .previous {
+      left: 5%; }
+      @media screen and (min-width: 1440px) {
+        main .lightbox .previous {
+          display: none; }
+          main .lightbox .previous .container {
+            width: 80%;
+            margin: 0 auto; } }
+      main .lightbox .previous:hover {
+        left: 4%; }
+    main .lightbox .next {
+      right: 5%; }
+      @media screen and (min-width: 1440px) {
+        main .lightbox .next {
+          display: none; }
+          main .lightbox .next .container {
+            width: 80%;
+            margin: 0 auto; } }
+      main .lightbox .next:hover {
+        right: 4%; }
+    main .lightbox .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: #ffffff;
+      border-radius: 50%;
+      width: 5rem;
+      height: 5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       cursor: pointer;
-      filter: brightness(300%); }
-  .overlay .lightbox {
-    max-width: 60rem; }
-    .overlay .lightbox .next {
+      transition: all 0.3s ease; }
+    main .lightbox .thumbGallery {
+      display: none; }
+      @media screen and (min-width: 1440px) {
+        main .lightbox .thumbGallery {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-top: 3rem; }
+          main .lightbox .thumbGallery .container {
+            width: 80%;
+            margin: 0 auto; }
+          main .lightbox .thumbGallery .pic {
+            display: flex;
+            width: 20%;
+            height: fit-content;
+            overflow: hidden;
+            border-radius: 1rem; }
+            main .lightbox .thumbGallery .pic img {
+              width: 100%; }
+              main .lightbox .thumbGallery .pic img:hover {
+                opacity: 0.75; }
+          main .lightbox .thumbGallery .active {
+            border: 2px solid #0B7189; }
+            main .lightbox .thumbGallery .active img {
+              opacity: 0.5; } }
+  main .product {
+    padding: 2rem 2.5rem 4.5rem 2.5rem; }
+    @media screen and (min-width: 1440px) {
+      main .product {
+        width: 100%;
+        padding: 3rem 0 3rem 3rem; }
+        main .product .container {
+          width: 80%;
+          margin: 0 auto; }
+        main .product .countBtnGroup {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 1.5rem;
+          margin-top: 1.5rem; } }
+    main .product .companyName {
+      text-transform: uppercase;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #0B7189;
+      letter-spacing: 0.20rem; }
+    main .product .title {
+      color: #1d2025;
+      font-size: 3rem;
+      font-weight: 700;
+      margin-top: 1.5rem;
+      line-height: 120%; }
+      @media screen and (min-width: 1440px) {
+        main .product .title {
+          font-size: 4.5rem;
+          margin-top: 2rem; }
+          main .product .title .container {
+            width: 80%;
+            margin: 0 auto; } }
+    main .product .description {
+      font-size: 1.5rem;
+      color: #68707d;
+      line-height: 165%;
+      margin-top: 1.5rem; }
+      @media screen and (min-width: 1440px) {
+        main .product .description {
+          margin-top: 3.5rem;
+          font-size: 1.5rem; }
+          main .product .description .container {
+            width: 80%;
+            margin: 0 auto; } }
+    main .product .priceWrapper {
       display: flex;
-      right: 0;
-      transform: translateX(50%); }
-    .overlay .lightbox .previous {
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 2rem; }
+      @media screen and (min-width: 1440px) {
+        main .product .priceWrapper {
+          flex-direction: column;
+          align-items: flex-start;
+          margin-top: 2.5rem;
+          gap: 1rem; }
+          main .product .priceWrapper .container {
+            width: 80%;
+            margin: 0 auto; } }
+      main .product .priceWrapper .group {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start; }
+        main .product .priceWrapper .group .price {
+          font-size: 3rem;
+          font-weight: 700; }
+        main .product .priceWrapper .group .discount {
+          font-size: 1.5rem;
+          font-weight: 700;
+          color: #0B7189;
+          background-color: #1DC6ED;
+          margin-left: 1.5rem;
+          padding: 0.5rem 1rem;
+          border-radius: 0.5rem; }
+      main .product .priceWrapper .oldPrice {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #b6bcc8;
+        text-decoration: line-through; }
+    main .product .counterWrapper {
       display: flex;
-      left: 0;
-      transform: translateX(-50%); }
-    .overlay .lightbox .arrow {
-      top: 40%; }
-
-.hidden {
-  display: none; }
+      align-items: center;
+      justify-content: space-between;
+      background-color: #f7f8fd;
+      padding: 1.5rem 2.5rem;
+      margin-top: 2rem;
+      border-radius: 1rem; }
+      @media screen and (min-width: 1440px) {
+        main .product .counterWrapper {
+          width: 60%;
+          border-radius: 1rem;
+          padding: 1rem 0.5rem; }
+          main .product .counterWrapper .container {
+            width: 80%;
+            margin: 0 auto; } }
+      main .product .counterWrapper .counter {
+        font-size: 1.5rem;
+        font-weight: 700; }
+      main .product .counterWrapper #btnMinus,
+      main .product .counterWrapper #btnPlus {
+        cursor: pointer;
+        padding: 1rem;
+        border-radius: 0.5rem; }
+        l main .product .counterWrapper #btnMinus:hover, l
+        main .product .counterWrapper #btnPlus:hover {
+          opacity: 0.5;
+          background-color: #1DC6ED; }
+    main .product .btn {
+      background-color: #0B7189;
+      color: #ffffff;
+      margin-top: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      font-size: 1.5rem;
+      font-weight: 700;
+      border-radius: 1rem;
+      padding: 2rem;
+      box-shadow: 0px 20px 30px 0px #1DC6ED;
+      cursor: pointer; }
+      main .product .btn img {
+        height: 1.5rem;
+        filter: brightness(300%); }
+      @media screen and (min-width: 1440px) {
+        main .product .btn {
+          width: 100%; }
+          main .product .btn .container {
+            width: 80%;
+            margin: 0 auto; } }
+  main .overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #170A1C;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; }
+    main .overlay .btnClose {
+      width: 60rem;
+      text-align: end;
+      padding: 2rem 0; }
+      main .overlay .btnClose img {
+        cursor: pointer;
+        filter: brightness(300%); }
+    main .overlay .lightbox {
+      max-width: 60rem; }
+      main .overlay .lightbox .next {
+        display: flex;
+        right: 0;
+        transform: translateX(50%); }
+      main .overlay .lightbox .previous {
+        display: flex;
+        left: 0;
+        transform: translateX(-50%); }
+      main .overlay .lightbox .arrow {
+        top: 40%; }
+  main .hidden {
+    display: none; }
