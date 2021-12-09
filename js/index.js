@@ -1,3 +1,53 @@
+/**
+ * @challenge: Desafío: Arrays
+ * 
+ * @version: v1.0.0
+ * @author:
+*/
+class Author {
+    constructor(firstName, lastName, age, location) {
+        this.Nombre = firstName;
+        this.Apellido = lastName;
+        this.Edad = age;
+        this.Localidad = location;
+    }
+}
+
+let gaspar = new Author("Gaspar", "Rebord", 19, "Argentina");
+console.log(gaspar);
+/** 
+ * @fecha: 07/12/2021
+ *
+ * History:
+ *  - v1.0.0 – Primera entrega
+*/
+
+// User register
+
+
+class Getid {
+    constructor(firstName, lastName, age, date) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.date = date;
+    }
+    getIdInfo() {
+        return "El usuario se llama " + this.firstName + " " + this.lastName + ", tiene " + this.age + " años de edad y nacio el " + this.date;
+    }
+}
+
+let firstName = prompt("Ingrese su nombre");
+let lastName = prompt("Ingrese su apellido");
+let age = prompt("Ingrese su edad");
+let date = prompt("Ingrese su fecha de nacimiento");
+
+let user = new Getid(firstName, lastName, age, date);
+console.log(user);
+console.log(user.getIdInfo());
+
+//Const
+
 const menu = document.querySelector('.menu');
 const btnHamburger = document.querySelector('.hamburger');
 const btnMenuClose = document.querySelector('#btnMenuClose');
@@ -25,6 +75,8 @@ const checkout = document.querySelector('.checkout');
 const overlay = document.querySelector('.overlay');
 const lightbox = document.querySelector('.lightbox');
 
+
+
 let lightboxGallery;
 let lightboxHero;
 
@@ -34,6 +86,7 @@ let productCounterValue = 1;
 let productsInCart = 0;
 let price = 239999.0;
 let discount = 0.5;
+
 
 
 btnHamburger.addEventListener('click', onHamburgerClick);
