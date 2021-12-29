@@ -1,0 +1,41 @@
+footer {
+    width: 100%;
+    grid-area: footer;
+    display: block;
+    background-color: $pale-teal-blue;
+    height: auto;
+    .container {
+        display: flex;
+        margin-left: 15%;
+        margin-right: 15%;
+        height: auto;
+        align-items: center;
+        justify-content: space-between;
+        .section1 {
+            margin: 2rem;
+            align-items: center;
+            justify-content: center;
+            height: 15vh;
+            width: 25%;
+            p {
+                font-size: 1.5rem;
+                font-weight: 600;
+            }
+        }
+        .section2 {
+            margin: 2rem;
+            padding: 1rem;
+            align-items: center;
+            justify-content: center;
+            height: 15vh;
+            width: 25%;
+            .logo {
+                font-size: 1rem;
+                p {
+                    font-size: 3rem;
+                    font-weight: 700;
+                }
+            }
+        }
+    }
+}

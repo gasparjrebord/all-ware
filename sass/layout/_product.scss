@@ -1,0 +1,255 @@
+#mainProduct {
+    grid-area: main;
+	@include laptop {
+		.content {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 10rem;
+			padding: 9rem 5rem;
+		}
+	}
+	.lightbox {
+		position: relative;
+        height: auto;
+		@include laptop {
+			width: 100%;
+		}
+		.productHero {
+			height: 50vh;
+            justify-self: center;
+			@include laptop {
+				border-radius: 1.5rem;
+			}
+		}
+		.previous {
+			left: 5%;
+			@include laptop {
+				display: none;
+			}
+			&:hover {
+				left: 4%;
+			}
+		}
+		.next {
+			right: 5%;
+			@include laptop {
+				display: none;
+			}
+			&:hover {
+				right: 4%;
+			}
+		}
+		.arrow {
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			background-color: $white;
+			border-radius: 50%;
+			width: 5rem;
+			height: 5rem;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			cursor: pointer;
+			transition: all 0.3s ease;
+		}
+		.thumbGallery {
+			display: none;
+			@include laptop {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				margin-top: 3rem;
+				.pic {
+					display: flex;
+					width: 20%;
+					height: fit-content;
+					overflow: hidden;
+					border-radius: 1rem;
+					img {
+						width: 100%;
+						&:hover {
+							opacity: 0.75;
+						}
+					}
+				}
+				.active {
+					border: 2px solid $teal-blue;
+					img {
+						opacity: 0.5;
+					}
+				}
+			}
+		}
+	}
+	.product {
+		padding: 2rem 2.5rem 4.5rem 2.5rem;
+		@include laptop {
+			width: 100%;
+			padding: 3rem 0 3rem 3rem;
+			.countBtnGroup {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 1.5rem;
+				margin-top: 1.5rem;
+			}
+		}
+		.companyName {
+			text-transform: uppercase;
+			font-size: 1.5rem;
+			font-weight: 700;
+			color: $teal-blue;
+			letter-spacing: 0.20rem;
+		}
+		.title {
+			color: $very-dark-blue;
+			font-size: 3rem;
+			font-weight: 700;
+			margin-top: 1.5rem;
+			line-height: 120%;
+			@include laptop {
+				font-size: 4.5rem;
+				margin-top: 2rem;
+			}
+		}
+		.description {
+			font-size: 1.5rem;
+			color: $dark-grayish-blue;
+			line-height: 165%;
+			margin-top: 1.5rem;
+			@include laptop {
+				margin-top: 3.5rem;
+				font-size: 1.5rem;
+			}
+		}
+		.priceWrapper {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			margin-top: 2rem;
+			@include laptop {
+				flex-direction: column;
+				align-items: flex-start;
+				margin-top: 2.5rem;
+				gap: 1rem;
+			}
+			.group {
+				display: flex;
+				align-items: center;
+				justify-content: flex-start;
+				.price {
+					font-size: 3rem;
+					font-weight: 700;
+				}
+				.discount {
+					font-size: 1.5rem;
+					font-weight: 700;
+					color: $teal-blue;
+					background-color: $pale-teal-blue;
+					margin-left: 1.5rem;
+					padding: 0.5rem 1rem;
+					border-radius: 0.5rem;
+				}
+			}
+			.oldPrice {
+				font-size: 2rem;
+				font-weight: 700;
+				color: $grayish-blue;
+				text-decoration: line-through;
+			}
+		}
+		.counterWrapper {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			background-color: $light-grayish-blue;
+			padding: 1.5rem 2.5rem;
+			margin-top: 2rem;
+			border-radius: 1rem;
+			@include laptop {
+				width: 60%;
+				border-radius: 1rem;
+				padding: 1rem 0.5rem;
+			}
+			.counter {
+				font-size: 1.5rem;
+				font-weight: 700;
+			}
+			#btnMinus,
+			#btnPlus {
+				cursor: pointer;
+				padding: 1rem;
+				border-radius: 0.5rem;
+				l &:hover {
+					opacity: 0.5;
+					background-color: $pale-teal-blue;
+				}
+			}
+		}
+		.btn {
+			background-color: $teal-blue;
+			color: $white;
+			margin-top: 1.5rem;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 1.5rem;
+			font-size: 1.5rem;
+			font-weight: 700;
+			border-radius: 1rem;
+			padding: 2rem;
+			img {
+				height: 1.5rem;
+				filter: brightness(300%);
+			}
+			box-shadow: 0px 20px 30px 0px $pale-teal-blue;
+			cursor: pointer;
+			@include laptop {
+				width: 100%;
+			}
+		}
+	}
+	.overlay {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background-color: $black;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		.btnClose {
+			width: 60rem;
+			text-align: end;
+			padding: 2rem 0;
+			img {
+				cursor: pointer;
+				filter: brightness(300%);
+			}
+		}
+		.lightbox {
+			max-width: 60rem;
+			.next {
+				display: flex;
+				right: 0;
+				transform: translateX(50%);
+			}
+			.previous {
+				display: flex;
+				left: 0;
+				transform: translateX(-50%);
+			}
+			.arrow {
+				top: 40%;
+			}
+		}
+        
+	}
+	.hidden {
+		display: none;
+	}
+}

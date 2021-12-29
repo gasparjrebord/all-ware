@@ -1,4 +1,17 @@
 .gridMain {
+  display: grid;
+  grid-template-columns: 15% auto auto 15%;
+  grid-template-rows: auto auto 100% auto;
+  gap: 2.5rem;
+  grid-template-areas: 
+    "header header header header"
+    "section section section section"
+    ". main main ."
+    "footer footer footer footer";
+}
+
+
+.gridProduct {
     display: grid;
     grid-template-columns: 15% auto auto 15%;
     grid-template-rows: 5% 50% auto auto;
