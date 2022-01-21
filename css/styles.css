@@ -329,7 +329,8 @@ main {
     width: 2rem;
     height: 2rem;
     font-size: 2rem;
-    padding: 2px 5px 7px 5px; }
+    padding: 2px 5px 7px 5px;
+    cursor: pointer; }
   .content .productHero {
     margin: 1rem;
     width: 70%; }

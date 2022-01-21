@@ -22,55 +22,107 @@ $(document).ready(function () {
         success: function (response) {
             let products = response
             for (const product of products) {
-                $(".productsContainer").append(`   
+                $(".allProducts").append(`  
+                    <div class="row row-cols-3 productsContainer"> 
                         <div class="col card" style="width: 40vh;">
-                            <img src="${product.img}" class="card-img-top" id=${product.id} alt="product${product.id}">
+                            <a><img src="${product.img}" class="card-img-top img${product.id}" alt="product-${product.id}"></a>
                             <div class="card-body">
-                                <h5 class="card-title">${product.title}</h5>
-                                <p class="card-text">$${product.price}</p>
-                                <a class="btn btn-primary" nro=${product.id}><img src="./assets/images/icon-cart.svg" alt="icon cart">Add to cart</a>
+                                <h5 class="card-title title">${product.title}</h5>
+                                <p class="card-text price">$${product.price}</p>
+                                <a class="btn btn-primary btnAddToCart" href="${product.id}"><img src="./assets/images/icon-cart.svg" alt="icon cart">Add to cart</a>
                             </div>
                         </div>
-                `);
-
-            }
-
-        }
-    });
-
-    $(`id=${product.id}`).click(function (e) {
-
-
-    });
-    $.ajax({
-        type: "GET",
-        url: JSON,
-        success: function (response) {
-            $(".lightbox").append(`
-                                <div class="card mb-3 content">
-                                    <div class="closeBtn">X</div>
-                                    <img src="this."
-                                        class="card-img-top productHero" alt="imageproduct">
-                                    <div class="card-body">
-                                        <p class="companyName">ALLWARE</p>
-                                        <h5 class="card-title">Notebook Asus Zenbook Duo Intel Core I5 11va 16GB 512GB</h5>
-                                        <p class="card-text price">$119999.50</p>
-                                        <div class="countBtnGroup">
-                                            <div class="counterWrapper">
-                                                <div id="btnMinus">-</div>
-                                                <div class="counter">1</div>
-                                                <div id="btnPlus">+</div>
-                                            </div>
-                                            <div class="btn">
-                                                <img src="./assets/images/icon-cart.svg" alt="icon cart">
-                                                <p>Add to cart</p>
-                                            </div>
-                                        </div>
-                                    </div>
+                    </div>
+                    <div class="card mb-3 content id${product.id} hidden">
+                        <div class="closeBtn">X</div>
+                        <img src="${product.img}"
+                        class="card-img-top productHero" alt="imageproduct">
+                        <div class="card-body">
+                            <p class="companyName">ALLWARE</p>
+                            <h5 class="card-title">${product.title}</h5>
+                            <p class="card-text price">$${product.price}</p>
+                            <div class="countBtnGroup">
+                                <div class="counterWrapper">
+                                    <div id="btnMinus">-</div>
+                                    <div class="counter">1</div>
+                                    <div id="btnPlus">+</div>
                                 </div>
+                                <div class="btn btnAddToCart">
+                                    <img src="./assets/images/icon-cart.svg" alt="icon cart">
+                                    <p>Add to cart</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 `);
+                $(`.img${product.id}`).click(function () {
+                    $(`.id${product.id}`).fadeIn();
 
+                });
+                $("#btnPlus").click(function () {
+                    console.log(productCounterValue)
+                    setProductCounter(1);
+                });
+                $("#btnMinus").click(function () {
+                    setProductCounter(-1);
+                });
+                $(".closeBtn").click(function () {
+                    $(`.id${product.id}`).fadeOut();
+
+                });
+            }
+            console.log(products)
         }
+    });
+    $(".btnAddToCart").click(function () {
+        let title = $(".title").val();
+        let img = $(".img").val();
+        let price = $(".price").val();
+
+        let cartProduct = (
+            {
+                title: title,
+                img: img,
+                price: price
+            }
+        )
+        $.ajax({
+            type: "POST",
+            url: JSON,
+            data: cartProduct,
+            success: function (response) {
+                productsInCart += productCounterValue
+                updateCart();
+                html += `
+                <div class="item">
+                    <img class="productImg" src="${response.img}" alt="">
+                    <div class="details">
+                        <div class="productName">${response.title}</div>
+                        <div class="priceGroup">
+                            <div class="price">$${(response.price)}</div> x
+                            <div class="count">${productsInCart}</div>
+                            <div class="totalAmount">$${(response.price * productsInCart).toFixed()}</div>
+                    </div>
+                    </div>
+                    <img id="btnDelete" src="../assets/images/icon-delete.svg" alt="icon delete">
+                </div>
+                `;
+
+                productInShoppingCart.html(html);
+
+                $("#btnDelete").click(function (e) {
+                    productsInCart--;
+                    updateCart();
+                    const totalAmount = $(".totalAmount");
+                    productCounter.text(productsInCart);
+                    totalAmount.text(`$${(price * productsInCart).toFixed(2)}`);
+
+                    if (productsInCart == 0) {
+                        productInShoppingCart.text("");
+                    }
+                });
+            }
+        });
     });
 
     //cart
@@ -96,14 +148,6 @@ $(document).ready(function () {
 
     });
 
-    $("#btnPlus").click(function (e) {
-        console.log(productCounter)
-        setProductCounter(1);
-    });
-    $("#btnMinus").click(function (e) {
-        setProductCounter(-1);
-    });
-
 
     function setProductCounter(value) {
         if ((productCounterValue + value) > 0) {
@@ -111,41 +155,9 @@ $(document).ready(function () {
             productCounter.text(productCounterValue);
 
         }
-        console.log(value);
     }
 
-    btnAddToCard.click(function (e) {
-        productsInCart += productCounterValue
-        carrito.push(this.getAttribute('marcador'))
-        const productHTMLElement = `
-        <div class="item">
-            <img class="productImg" src="${this.img}" alt="">
-            <div class="details">
-                <div class="productName">${this.title}</div>
-                <div class="priceGroup">
-                    <div class="price">$${(this.price).toFixed(2)}</div> x
-                    <div class="count">${productsInCart}</div>
-                    <div class="totalAmount">$${(this.price * productsInCart).toFixed(2)}</div>
-            </div>
-            </div>
-            <img id="btnDelete" src="../assets/images/icon-delete.svg" alt="icon delete">
-        </div>
-        `;
 
-        productInShoppingCart.text(productHTMLElement);
-
-        $("#btnDelete").click(function (e) {
-            productsInCart--;
-            updateCart();
-            const totalAmount = $(".totalAmount");
-            productCounter.text(productsInCart);
-            totalAmount.text(`$${(price * productsInCart).toFixed(2)}`);
-
-            if (productsInCart == 0) {
-                productInShoppingCart.text("");
-            }
-        });
-    });
     function updateCart() {
         updateCartIcon();
         updateMsgEmpty();
@@ -174,7 +186,7 @@ $(document).ready(function () {
     }
 
     function updateCheckoutButton() {
-        if ((productsInCart == 0) && (!checkout.hasClass('hidden'))) {
+        if ((productsInCart == 0) && (!checkout.hasClass("hidden"))) {
             checkout.show();
         } else {
             checkout.hide();
