@@ -9,20 +9,6 @@ html {
 body {
   font-family: "Kumbh Sans", sans-serif; }
 
-.gridMain {
-  display: grid;
-  grid-template-columns: 15% auto auto 15%;
-  grid-template-rows: auto auto 100% auto;
-  gap: 2.5rem;
-  grid-template-areas: "header header header header" "section section section section" ". main main ." "footer footer footer footer"; }
-
-.gridProduct {
-  display: grid;
-  grid-template-columns: 15% auto auto 15%;
-  grid-template-rows: 5% 50% auto auto;
-  gap: 5rem 5rem;
-  grid-template-areas: "header header header header" ". main main ." "section section section section" "footer footer footer footer"; }
-
 header {
   grid-area: header;
   display: flex;
@@ -30,7 +16,8 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 1.5rem 2.5rem 2.5rem 2rem;
-  position: relative; }
+  position: relative;
+  margin: 0.5rem; }
   @media screen and (min-width: 1440px) {
     header {
       padding: 0;
@@ -275,327 +262,165 @@ header {
     display: none; }
 
 main {
-  grid-area: main;
   height: auto;
+  align-items: center;
+  justify-content: center;
   width: 100%; }
   main .productsContainer {
-    margin: auto;
-    display: flex;
-    width: 30%;
-    height: 40vh;
-    justify-content: space-around; }
-    main .productsContainer .product img {
-      margin: 1rem;
-      height: 25vh; }
-    main .productsContainer .product .description {
-      margin: 1rem; }
-      main .productsContainer .product .description .title {
-        font-size: 2rem;
-        font-weight: 600;
-        color: #0077b6; }
-      main .productsContainer .product .description p {
-        font-size: 1.2rem; }
-    main .productsContainer .product .btn {
-      margin: 1rem;
-      width: 40%;
-      background-color: #0096c7;
-      color: #ffffff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      font-weight: 700;
-      border-radius: 1rem;
-      padding: 1rem;
-      box-shadow: 0px 20px 30px 0px #90e0ef;
-      cursor: pointer; }
-      main .productsContainer .product .btn img {
-        height: 1.5rem;
-        filter: brightness(300%); }
-
-#mainProduct {
-  grid-area: main; }
-  @media screen and (min-width: 1440px) {
-    #mainProduct .container {
-      width: 80%;
-      margin: 0 auto; }
-    #mainProduct .content {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10rem;
-      padding: 9rem 5rem; } }
-  #mainProduct .lightbox {
-    position: relative;
-    height: auto; }
-    @media screen and (min-width: 1440px) {
-      #mainProduct .lightbox {
-        width: 100%; }
-        #mainProduct .lightbox .container {
-          width: 80%;
-          margin: 0 auto; } }
-    #mainProduct .lightbox .productHero {
-      height: 50vh;
-      justify-self: center; }
-      @media screen and (min-width: 1440px) {
-        #mainProduct .lightbox .productHero {
-          border-radius: 1.5rem; }
-          #mainProduct .lightbox .productHero .container {
-            width: 80%;
-            margin: 0 auto; } }
-    #mainProduct .lightbox .previous {
-      left: 5%; }
-      @media screen and (min-width: 1440px) {
-        #mainProduct .lightbox .previous {
-          display: none; }
-          #mainProduct .lightbox .previous .container {
-            width: 80%;
-            margin: 0 auto; } }
-      #mainProduct .lightbox .previous:hover {
-        left: 4%; }
-    #mainProduct .lightbox .next {
-      right: 5%; }
-      @media screen and (min-width: 1440px) {
-        #mainProduct .lightbox .next {
-          display: none; }
-          #mainProduct .lightbox .next .container {
-            width: 80%;
-            margin: 0 auto; } }
-      #mainProduct .lightbox .next:hover {
-        right: 4%; }
-    #mainProduct .lightbox .arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background-color: #ffffff;
-      border-radius: 50%;
-      width: 5rem;
-      height: 5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.3s ease; }
-    #mainProduct .lightbox .thumbGallery {
-      display: none; }
-      @media screen and (min-width: 1440px) {
-        #mainProduct .lightbox .thumbGallery {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          margin-top: 3rem; }
-          #mainProduct .lightbox .thumbGallery .container {
-            width: 80%;
-            margin: 0 auto; }
-          #mainProduct .lightbox .thumbGallery .pic {
-            display: flex;
-            width: 20%;
-            height: fit-content;
-            overflow: hidden;
-            border-radius: 1rem; }
-            #mainProduct .lightbox .thumbGallery .pic img {
-              width: 100%; }
-              #mainProduct .lightbox .thumbGallery .pic img:hover {
-                opacity: 0.75; }
-          #mainProduct .lightbox .thumbGallery .active {
-            border: 2px solid #0096c7; }
-            #mainProduct .lightbox .thumbGallery .active img {
-              opacity: 0.5; } }
-  #mainProduct .product {
-    padding: 2rem 2.5rem 4.5rem 2.5rem; }
-    @media screen and (min-width: 1440px) {
-      #mainProduct .product {
-        width: 100%;
-        padding: 3rem 0 3rem 3rem; }
-        #mainProduct .product .container {
-          width: 80%;
-          margin: 0 auto; }
-        #mainProduct .product .countBtnGroup {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 1.5rem;
-          margin-top: 1.5rem; } }
-    #mainProduct .product .companyName {
-      text-transform: uppercase;
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: #0096c7;
-      letter-spacing: 0.20rem; }
-    #mainProduct .product .title {
-      color: #03045e;
-      font-size: 3rem;
-      font-weight: 700;
-      margin-top: 1.5rem;
-      line-height: 120%; }
-      @media screen and (min-width: 1440px) {
-        #mainProduct .product .title {
-          font-size: 4.5rem;
-          margin-top: 2rem; }
-          #mainProduct .product .title .container {
-            width: 80%;
-            margin: 0 auto; } }
-    #mainProduct .product .description {
-      font-size: 1.5rem;
-      color: #0077b6;
-      line-height: 165%;
-      margin-top: 1.5rem; }
-      @media screen and (min-width: 1440px) {
-        #mainProduct .product .description {
-          margin-top: 3.5rem;
-          font-size: 1.5rem; }
-          #mainProduct .product .description .container {
-            width: 80%;
-            margin: 0 auto; } }
-    #mainProduct .product .priceWrapper {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-top: 2rem; }
-      @media screen and (min-width: 1440px) {
-        #mainProduct .product .priceWrapper {
-          flex-direction: column;
-          align-items: flex-start;
-          margin-top: 2.5rem;
-          gap: 1rem; }
-          #mainProduct .product .priceWrapper .container {
-            width: 80%;
-            margin: 0 auto; } }
-      #mainProduct .product .priceWrapper .group {
-        display: flex;
-        align-items: center;
-        justify-content: flex-start; }
-        #mainProduct .product .priceWrapper .group .price {
-          font-size: 3rem;
-          font-weight: 700; }
-        #mainProduct .product .priceWrapper .group .discount {
-          font-size: 1.5rem;
-          font-weight: 700;
-          color: #0096c7;
-          background-color: #90e0ef;
-          margin-left: 1.5rem;
-          padding: 0.5rem 1rem;
-          border-radius: 0.5rem; }
-      #mainProduct .product .priceWrapper .oldPrice {
-        font-size: 2rem;
-        font-weight: 700;
-        color: #ade8f4;
-        text-decoration: line-through; }
-    #mainProduct .product .counterWrapper {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background-color: #caf0f8;
-      padding: 1.5rem 2.5rem;
-      margin-top: 2rem;
-      border-radius: 1rem; }
-      @media screen and (min-width: 1440px) {
-        #mainProduct .product .counterWrapper {
-          width: 60%;
-          border-radius: 1rem;
-          padding: 1rem 0.5rem; }
-          #mainProduct .product .counterWrapper .container {
-            width: 80%;
-            margin: 0 auto; } }
-      #mainProduct .product .counterWrapper .counter {
-        font-size: 1.5rem;
-        font-weight: 700; }
-      #mainProduct .product .counterWrapper #btnMinus,
-      #mainProduct .product .counterWrapper #btnPlus {
-        cursor: pointer;
-        padding: 1rem;
-        border-radius: 0.5rem; }
-        l #mainProduct .product .counterWrapper #btnMinus:hover, l
-        #mainProduct .product .counterWrapper #btnPlus:hover {
-          opacity: 0.5;
-          background-color: #90e0ef; }
-    #mainProduct .product .btn {
-      background-color: #0096c7;
-      color: #ffffff;
-      margin-top: 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1.5rem;
-      font-size: 1.5rem;
-      font-weight: 700;
-      border-radius: 1rem;
-      padding: 2rem;
-      box-shadow: 0px 20px 30px 0px #90e0ef;
-      cursor: pointer; }
-      #mainProduct .product .btn img {
-        height: 1.5rem;
-        filter: brightness(300%); }
-      @media screen and (min-width: 1440px) {
-        #mainProduct .product .btn {
-          width: 100%; }
-          #mainProduct .product .btn .container {
-            width: 80%;
-            margin: 0 auto; } }
-  #mainProduct .overlay {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: #170A1C;
-    display: flex;
-    flex-direction: column;
+    width: 100%;
     align-items: center;
     justify-content: center; }
-    #mainProduct .overlay .btnClose {
-      width: 60rem;
-      text-align: end;
-      padding: 2rem 0; }
-      #mainProduct .overlay .btnClose img {
-        cursor: pointer;
-        filter: brightness(300%); }
-    #mainProduct .overlay .lightbox {
-      max-width: 60rem; }
-      #mainProduct .overlay .lightbox .next {
+    main .productsContainer .card {
+      margin: 2rem;
+      height: 50vh; }
+      main .productsContainer .card img {
+        margin: 2rem;
+        height: 25vh;
+        width: 35vh; }
+      main .productsContainer .card .card-body {
+        margin: 1rem; }
+        main .productsContainer .card .card-body .card-title {
+          height: 5rem;
+          overflow: hidden;
+          overflow-wrap: break-word;
+          text-overflow: ellipsis;
+          font-size: 2rem;
+          font-weight: 600;
+          color: #0077b6; }
+        main .productsContainer .card .card-body p {
+          font-size: 2rem; }
+      main .productsContainer .card .btn {
+        width: 50%;
+        background-color: #0096c7;
+        color: #ffffff;
         display: flex;
-        right: 0;
-        transform: translateX(50%); }
-      #mainProduct .overlay .lightbox .previous {
-        display: flex;
-        left: 0;
-        transform: translateX(-50%); }
-      #mainProduct .overlay .lightbox .arrow {
-        top: 40%; }
-  #mainProduct .hidden {
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: 700;
+        border-radius: 1rem;
+        box-shadow: 0px 20px 30px 0px #90e0ef;
+        cursor: pointer; }
+        main .productsContainer .card .btn img {
+          height: 2rem;
+          width: 2rem;
+          filter: brightness(300%); }
+  main .hidden {
     display: none; }
+
+.content {
+  margin: 1rem;
+  background-color: white;
+  position: fixed;
+  width: 50%;
+  height: fit-content;
+  top: 70%;
+  left: 50%;
+  padding: 1rem;
+  z-index: 4;
+  border-radius: 10px;
+  box-shadow: 0px 0px 28px 10px rgba(0, 0, 0, 0.74);
+  margin-top: -35%;
+  margin-left: -25%; }
+  .content .closeBtn {
+    position: absolute;
+    right: 2rem;
+    top: 1rem;
+    width: 2rem;
+    height: 2rem;
+    font-size: 2rem;
+    padding: 2px 5px 7px 5px; }
+  .content .productHero {
+    margin: 1rem;
+    width: 70%; }
+  .content .companyName {
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #0096c7;
+    letter-spacing: 0.20rem; }
+  .content .card-title {
+    color: #03045e;
+    font-size: 3rem;
+    font-weight: 700;
+    margin-top: 1.5rem;
+    line-height: 120%; }
+  .content .card-text {
+    font-size: 3rem;
+    font-weight: 700; }
+  .content .counterWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #caf0f8;
+    padding: 1.5rem 2.5rem;
+    margin-top: 2rem;
+    border-radius: 1rem; }
+    .content .counterWrapper .counter {
+      font-size: 1.5rem;
+      font-weight: 700; }
+    .content .counterWrapper #btnMinus,
+    .content .counterWrapper #btnPlus {
+      cursor: pointer;
+      color: #0096c7;
+      font-size: 3rem;
+      padding: 1rem;
+      border-radius: 0.5rem; }
+      l .content .counterWrapper #btnMinus:hover, l
+      .content .counterWrapper #btnPlus:hover {
+        opacity: 0.5;
+        background-color: #90e0ef; }
+  .content .btn {
+    background-color: #0096c7;
+    color: #ffffff;
+    margin-top: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0px 20px 30px 0px #90e0ef;
+    cursor: pointer; }
+    .content .btn img {
+      height: 1.5rem;
+      filter: brightness(300%); }
+
+.hidden {
+  display: none; }
 
 footer {
   width: 100%;
-  grid-area: footer;
   display: block;
   background-color: #90e0ef;
   height: auto; }
-  footer .container {
+  footer .footer {
     display: flex;
     margin-left: 15%;
     margin-right: 15%;
     height: auto;
     align-items: center;
     justify-content: space-between; }
-    footer .container .section1 {
+    footer .footer .section1 {
       margin: 2rem;
       align-items: center;
       justify-content: center;
       height: 15vh;
       width: 25%; }
-      footer .container .section1 p {
-        font-size: 1.5rem;
+      footer .footer .section1 p {
+        font-size: 2rem;
         font-weight: 600; }
-    footer .container .section2 {
+    footer .footer .section2 {
       margin: 2rem;
       padding: 1rem;
       align-items: center;
       justify-content: center;
       height: 15vh;
       width: 25%; }
-      footer .container .section2 .logo {
+      footer .footer .section2 .logo {
         font-size: 1rem; }
-        footer .container .section2 .logo p {
+        footer .footer .section2 .logo p {
           font-size: 3rem;
           font-weight: 700; }

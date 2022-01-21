@@ -1,32 +1,38 @@
 main {
-    grid-area: main;
     height: auto;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     .productsContainer {
-        margin: auto;
-        display: flex;
-        width: 30%;
-        height: 40vh;
-        justify-content: space-around;
-        .product {
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        .card {
+            margin: 2rem;
+            height: 50vh;
             img {
-            margin: 1rem;
+            margin: 2rem;
             height: 25vh;
-        }
-        .description {
+            width: 35vh;
+            }
+            .card-body {
             margin: 1rem;
-            .title {
+            .card-title {
+                height: 5rem;
+                overflow: hidden;
+                overflow-wrap: break-word;
+                text-overflow: ellipsis;
+    
                 font-size: 2rem;
                 font-weight: 600;
                 color: $dark-grayish-blue;
             }
             p {
-                font-size: 1.2rem;
+                font-size: 2rem;
             }
-        }
-        .btn {
-            margin: 1rem;
-            width: 40%;
+            }
+            .btn {
+            width: 50%;
 			background-color: $teal-blue;
 			color: $white;
 			display: flex;
@@ -35,14 +41,18 @@ main {
 			font-size: 1.5rem;
 			font-weight: 700;
 			border-radius: 1rem;
-			padding: 1rem;
 			img {
-				height: 1.5rem;
+				height: 2rem;
+                width: 2rem;
 				filter: brightness(300%);
 			}
 			box-shadow: 0px 20px 30px 0px $pale-teal-blue;
 			cursor: pointer;
-		}
         }
+        }
+            
+    }
+    .hidden {
+        display: none;
     }
 }
