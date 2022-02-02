@@ -22,17 +22,21 @@ $(document).ready(function () {
         success: function (response) {
             let products = response
             for (const product of products) {
-                $(".allProducts").append(`  
-                    <div class="row row-cols-3 productsContainer"> 
+                $("#allProducts").append(`  
+                     
                         <div class="col card" style="width: 40vh;">
                             <a><img src="${product.img}" class="card-img-top img${product.id}" alt="product-${product.id}"></a>
                             <div class="card-body">
                                 <h5 class="card-title title">${product.title}</h5>
                                 <p class="card-text price">$${product.price}</p>
-                                <a class="btn btn-primary btnAddToCart" href="${product.id}"><img src="./assets/images/icon-cart.svg" alt="icon cart">Add to cart</a>
+                                <a class="btn btn-primary btnAddToCart" href="#"><img src="./assets/images/icon-cart.svg" alt="icon cart">Add to cart</a>
                             </div>
                         </div>
-                    </div>
+                    
+                `);
+
+                $(`.img${product.id}`).click(function () {
+                    $("#overlayProducts").append(`  
                     <div class="card mb-3 content id${product.id} hidden">
                         <div class="closeBtn">X</div>
                         <img src="${product.img}"
@@ -47,27 +51,27 @@ $(document).ready(function () {
                                     <div class="counter">1</div>
                                     <div id="btnPlus">+</div>
                                 </div>
-                                <div class="btn btnAddToCart">
-                                    <img src="./assets/images/icon-cart.svg" alt="icon cart">
-                                    <p>Add to cart</p>
-                                </div>
+                                <a class="btn btnAddToCart" href="#"><img src="./assets/images/icon-cart.svg" alt="icon cart">Add to cart</a>
                             </div>
                         </div>
                     </div>
                 `);
-                $(`.img${product.id}`).click(function () {
                     $(`.id${product.id}`).fadeIn();
+                    $("#btnPlus").click(function () {
+                        console.log(productCounterValue)
+                        setProductCounter(1);
+                    });
+                    $("#btnMinus").click(function () {
+                        console.log(productCounterValue)
+                        setProductCounter(-1);
+                    });
+                    $(".closeBtn").click(function () {
+                        $(`.id${product.id}`).fadeOut().delay(500);
+                        $("#overlayProducts").empty();
 
-                });
-                $("#btnPlus").click(function () {
-                    console.log(productCounterValue)
-                    setProductCounter(1);
-                });
-                $("#btnMinus").click(function () {
-                    setProductCounter(-1);
-                });
-                $(".closeBtn").click(function () {
-                    $(`.id${product.id}`).fadeOut();
+
+                    });
+
 
                 });
             }
@@ -75,6 +79,15 @@ $(document).ready(function () {
         }
     });
     $(".btnAddToCart").click(function () {
+
+
+        const infoCurso = {
+            imagen: curso.querySelector('img').src,
+            titulo: curso.querySelector('h4').textContent,
+            precio: curso.querySelector('.precio span').textContent,
+            id: curso.querySelector('a').getAttribute('data-id'),
+            cantidad: 1
+        }
         let title = $(".title").val();
         let img = $(".img").val();
         let price = $(".price").val();
