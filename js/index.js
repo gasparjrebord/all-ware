@@ -12,197 +12,210 @@ $(document).ready(function () {
     });
 
     //productos
-
-    const JSON = "json/products.json"
-
+    const JSON = "json/articles.json"
 
     $.ajax({
         type: "GET",
         url: JSON,
         success: function (response) {
-            let products = response
-            for (const product of products) {
+            let articles = response
+            for (const article of articles) {
                 $("#allProducts").append(`  
-                     
-                        <div class="col card" style="width: 40vh;">
-                            <a><img src="${product.img}" class="card-img-top img${product.id}" alt="product-${product.id}"></a>
+                        <div class="col card" style="width: 40vh;" data-id="${article.id}">
+                            <a><img src="${article.img}" class="card-img-top img${article.id}" alt="product-${article.id}"></a>
                             <div class="card-body">
-                                <h5 class="card-title title">${product.title}</h5>
-                                <p class="card-text price">$${product.price}</p>
-                                <a class="btn btn-primary btnAddToCart" href="#"><img src="./assets/images/icon-cart.svg" alt="icon cart">Add to cart</a>
+                                <h5 class="card-title title">${article.title}</h5>
+                                <p class="card-text price">$${article.price}</p>
+                                <a class="btn btn-primary btnAddToCart" data-id="${article.id}" href="#"><img src="./assets/images/icon-cart.svg" alt="icon cart">Add to cart</a>
                             </div>
                         </div>
-                    
                 `);
 
-                $(`.img${product.id}`).click(function () {
+                //overlay
+
+                $(`.img${article.id}`).click(function () {
                     $("#overlayProducts").append(`  
-                    <div class="card mb-3 content id${product.id} hidden">
+                    <div class="card mb-3 content hidden" data-id="${article.id}">
                         <div class="closeBtn">X</div>
-                        <img src="${product.img}"
+                        <img src="${article.img}"
                         class="card-img-top productHero" alt="imageproduct">
                         <div class="card-body">
                             <p class="companyName">ALLWARE</p>
-                            <h5 class="card-title">${product.title}</h5>
-                            <p class="card-text price">$${product.price}</p>
+                            <h5 class="card-title">${article.title}</h5>
+                            <p class="card-text price">$${article.price}</p>
                             <div class="countBtnGroup">
                                 <div class="counterWrapper">
                                     <div id="btnMinus">-</div>
                                     <div class="counter">1</div>
                                     <div id="btnPlus">+</div>
                                 </div>
-                                <a class="btn btnAddToCart" href="#"><img src="./assets/images/icon-cart.svg" alt="icon cart">Add to cart</a>
+                                <a class="btn btnAddToCart" data-id="${article.id}" href="#"><img src="./assets/images/icon-cart.svg" alt="icon cart">Add to cart</a>
                             </div>
                         </div>
                     </div>
                 `);
-                    $(`.id${product.id}`).fadeIn();
-                    $("#btnPlus").click(function () {
-                        console.log(productCounterValue)
-                        setProductCounter(1);
-                    });
-                    $("#btnMinus").click(function () {
-                        console.log(productCounterValue)
-                        setProductCounter(-1);
-                    });
+                    $(`.id${article.id}`).fadeIn();
+
                     $(".closeBtn").click(function () {
-                        $(`.id${product.id}`).fadeOut().delay(500);
+                        $(`.id${article.id}`).fadeOut().delay(500);
                         $("#overlayProducts").empty();
-
-
                     });
-
-
                 });
             }
-            console.log(products)
+            //console.log(products)
         }
     });
-    $(".btnAddToCart").click(function () {
+
+    //carrito
+    let productsInCart = [];
 
 
-        const infoCurso = {
-            imagen: curso.querySelector('img').src,
-            titulo: curso.querySelector('h4').textContent,
-            precio: curso.querySelector('.precio span').textContent,
-            id: curso.querySelector('a').getAttribute('data-id'),
-            cantidad: 1
+
+    $(".btnAddToCart").click(function (e) {
+        e.preventDefault();
+        if (e.target.classList.contains('btnAddToCart')) {
+            const productSelected = e.target.parentElement.parentElement;
+            readDataProduct(productSelected);
         }
-        let title = $(".title").val();
-        let img = $(".img").val();
-        let price = $(".price").val();
+        function readDataProduct(product) {
+            // console.log(curso);
 
-        let cartProduct = (
-            {
-                title: title,
-                img: img,
-                price: price
+            // Crear un objeto con el contenido del curso actual
+            const dataProduct = {
+                image: product.$("img").src(),
+                title: product.$("h5").text(),
+                price: product.$("p").text(),
+                id: product.$("a").attr("data-id"),
+                quantity: 1
             }
-        )
-        $.ajax({
-            type: "POST",
-            url: JSON,
-            data: cartProduct,
-            success: function (response) {
-                productsInCart += productCounterValue
-                updateCart();
+
+            // Revisa si un elemento ya existe en el carrito
+            const exist = productsInCart.some(product => product.id === dataProduct.id);
+
+            if (exist) {
+                // Actualizamos la cantidad
+                const products = productsInCart.map(product => {
+                    if (product.id === dataProduct.id) {
+                        product.quantity++;
+                        return product; // retorna el objeto actualizado
+                    } else {
+                        return product; // retorna los objetos que no son los duplicados
+                    }
+                });
+                productsInCart = [...products];
+            } else {
+                // Agrega elementos al arreglo de carrito
+                productsInCart = [...productsInCart, dataProduct];
+            }
+
+            console.log(productsInCart);
+
+            carritoHTML();
+        }
+        // Muestra el Carrito de compras en el HTML
+        function cartHTML() {
+
+            // Limpiar el HTML
+            cleanHTML();
+
+            // Recorre el carrito y genera el HTML
+
+            productsInCart.forEach(product => {
+                const { image, title, price, quantity, id } = product;
                 html += `
                 <div class="item">
-                    <img class="productImg" src="${response.img}" alt="">
+                    <img class="productImg" src="${image}" alt="">
                     <div class="details">
-                        <div class="productName">${response.title}</div>
+                        <div class="productName">${title}</div>
                         <div class="priceGroup">
-                            <div class="price">$${(response.price)}</div> x
-                            <div class="count">${productsInCart}</div>
-                            <div class="totalAmount">$${(response.price * productsInCart).toFixed()}</div>
+                            <div class="price">$${price}</div> x
+                            <div class="count">${quantity}</div>
+                            <div class="totalAmount">$${(price * quantity).toFixed()}</div>
                     </div>
                     </div>
                     <img id="btnDelete" src="../assets/images/icon-delete.svg" alt="icon delete">
                 </div>
                 `;
-
+                // Agregamos el HTML del carrito en el tbody
                 productInShoppingCart.html(html);
+            });
 
-                $("#btnDelete").click(function (e) {
-                    productsInCart--;
-                    updateCart();
-                    const totalAmount = $(".totalAmount");
-                    productCounter.text(productsInCart);
-                    totalAmount.text(`$${(price * productsInCart).toFixed(2)}`);
+            // Agregar el carrito de compras al storage
+            updateStorage();
 
-                    if (productsInCart == 0) {
-                        productInShoppingCart.text("");
-                    }
-                });
+        }
+
+        function updateStorage() {
+            localStorage.setItem("cart", JSON.stringify(productsInCart));
+        }
+
+        // Elimina los cursos del tbody
+        function cleanHTML() {
+            // mejor performance para limpiar nuestro HTML
+            while (contenedorCarrito.firstChild) {
+                contenedorCarrito.removeChild(contenedorCarrito.firstChild);
             }
+        }
+
+
+        //cart
+
+        $(".btnCart").toggleClass("hidden");
+
+
+
+
+        $("#btnPlus").click(function () {
+            console.log(productCounterValue)
+            setProductCounter(1);
         });
-    });
+        $("#btnMinus").click(function () {
+            console.log(productCounterValue)
+            setProductCounter(-1);
+        });
 
-    //cart
+        function setProductCounter(value) {
+            if ((productCounterValue + value) > 0) {
+                productCounterValue += value;
+                productCounter.text(productCounterValue);
 
-
-    let productCounterValue = 0;
-    let productsInCart = 0;
-
-    let price = 239999.0;
-    let discount = 0.5;
-
-    const cart = $(".cart");
-    const btnAddToCard = $(".btn");
-    const cartCount = $(".cartCount");
-    const productInShoppingCart = $(".productsInCart");
-    const productCounter = $(".counter");
-
-    const msgEmpty = $(".msgEmpty");
-    const checkout = $(".checkout");
-
-    $(".btnCart").click(function (e) {
-        cart.toggleClass("hidden");
-
-    });
-
-
-    function setProductCounter(value) {
-        if ((productCounterValue + value) > 0) {
-            productCounterValue += value;
-            productCounter.text(productCounterValue);
-
-        }
-    }
-
-
-    function updateCart() {
-        updateCartIcon();
-        updateMsgEmpty();
-        updateCheckoutButton();
-    }
-
-    function updateCartIcon() {
-        cartCount.text(productsInCart);
-        if ((productsInCart == 0) && (!cartCount.hasClass("hidden"))) {
-            cartCount.hide();
-        } else {
-            cartCount.show();
-        }
-    }
-
-
-    function updateMsgEmpty() {
-        if ((productsInCart == 0) && (msgEmpty.hasClass("hidden"))) {
-            msgEmpty.show();
-        } else {
-            if (!msgEmpty.hasClass("hidden")) {
-                msgEmpty.hide();
             }
         }
 
-    }
 
-    function updateCheckoutButton() {
-        if ((productsInCart == 0) && (!checkout.hasClass("hidden"))) {
-            checkout.show();
-        } else {
-            checkout.hide();
+        function updateCart() {
+            updateCartIcon();
+            updateMsgEmpty();
+            updateCheckoutButton();
         }
-    }
-});
+
+        function updateCartIcon() {
+            cartCount.text(productNmr);
+            if ((counter == 0) && (!cartCount.hasClass("hidden"))) {
+                cartCount.hide();
+            } else {
+                cartCount.show();
+            }
+        }
+
+
+        function updateMsgEmpty() {
+            if ((productNmr == 0) && (msgEmpty.hasClass("hidden"))) {
+                msgEmpty.show();
+            } else {
+                if (!msgEmpty.hasClass("hidden")) {
+                    msgEmpty.hide();
+                }
+            }
+
+        }
+
+        function updateCheckoutButton() {
+            if ((productNmr == 0) && (!checkout.hasClass("hidden"))) {
+                checkout.show();
+            } else {
+                checkout.hide();
+            }
+        }
+    });
+})

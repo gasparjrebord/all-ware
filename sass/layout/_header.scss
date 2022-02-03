@@ -161,7 +161,7 @@ header {
 		right: 1rem;
 		top: calc(calc(100%) + 1rem);
 		width: 35.5rem;
-		z-index: 1;
+		z-index: 999;
 		background-color: $white;
 		border-radius: 1rem;
 		box-shadow: 0 1rem 1rem 1rem rgba(0, 0, 0, 0.1), 0 1rem 2rem 1rem rgba(0, 0, 0, 0.1);
