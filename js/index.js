@@ -1,221 +1,263 @@
 $(document).ready(function () {
-    //menu hamburger
+    //menu 
 
     const menu = $(".menu");
 
-    $(".hamburger").click(function (e) {
-        menu.show(500);;
+    $(".hamburger").click(function () {
+        menu.show(500);
     });
 
-    $("#btnMenuClose").click(function (e) {
+    $("#btnMenuClose").click(function () {
         menu.hide(500);
     });
 
-    //productos
-    const JSON = "json/articles.json"
-
-    $.ajax({
-        type: "GET",
-        url: JSON,
-        success: function (response) {
-            let articles = response
-            for (const article of articles) {
-                $("#allProducts").append(`  
-                        <div class="col card" style="width: 40vh;" data-id="${article.id}">
-                            <a><img src="${article.img}" class="card-img-top img${article.id}" alt="product-${article.id}"></a>
-                            <div class="card-body">
-                                <h5 class="card-title title">${article.title}</h5>
-                                <p class="card-text price">$${article.price}</p>
-                                <a class="btn btn-primary btnAddToCart" data-id="${article.id}" href="#"><img src="./assets/images/icon-cart.svg" alt="icon cart">Add to cart</a>
-                            </div>
-                        </div>
-                `);
-
-                //overlay
-
-                $(`.img${article.id}`).click(function () {
-                    $("#overlayProducts").append(`  
-                    <div class="card mb-3 content hidden" data-id="${article.id}">
-                        <div class="closeBtn">X</div>
-                        <img src="${article.img}"
-                        class="card-img-top productHero" alt="imageproduct">
-                        <div class="card-body">
-                            <p class="companyName">ALLWARE</p>
-                            <h5 class="card-title">${article.title}</h5>
-                            <p class="card-text price">$${article.price}</p>
-                            <div class="countBtnGroup">
-                                <div class="counterWrapper">
-                                    <div id="btnMinus">-</div>
-                                    <div class="counter">1</div>
-                                    <div id="btnPlus">+</div>
-                                </div>
-                                <a class="btn btnAddToCart" data-id="${article.id}" href="#"><img src="./assets/images/icon-cart.svg" alt="icon cart">Add to cart</a>
-                            </div>
-                        </div>
-                    </div>
-                `);
-                    $(`.id${article.id}`).fadeIn();
-
-                    $(".closeBtn").click(function () {
-                        $(`.id${article.id}`).fadeOut().delay(500);
-                        $("#overlayProducts").empty();
-                    });
-                });
-            }
-            //console.log(products)
-        }
+    $(".btnCart").click(function () {
+        $(".cart").toggleClass("hidden");
     });
 
-    //carrito
-    let productsInCart = [];
+});
+const productDOM = document.querySelector("#allProducts");
+const productsInCart = document.querySelector(".productsInCart");
 
 
 
-    $(".btnAddToCart").click(function (e) {
-        e.preventDefault();
-        if (e.target.classList.contains('btnAddToCart')) {
-            const productSelected = e.target.parentElement.parentElement;
-            readDataProduct(productSelected);
-        }
-        function readDataProduct(product) {
-            // console.log(curso);
-
-            // Crear un objeto con el contenido del curso actual
-            const dataProduct = {
-                image: product.$("img").src(),
-                title: product.$("h5").text(),
-                price: product.$("p").text(),
-                id: product.$("a").attr("data-id"),
-                quantity: 1
-            }
-
-            // Revisa si un elemento ya existe en el carrito
-            const exist = productsInCart.some(product => product.id === dataProduct.id);
-
-            if (exist) {
-                // Actualizamos la cantidad
-                const products = productsInCart.map(product => {
-                    if (product.id === dataProduct.id) {
-                        product.quantity++;
-                        return product; // retorna el objeto actualizado
-                    } else {
-                        return product; // retorna los objetos que no son los duplicados
-                    }
-                });
-                productsInCart = [...products];
-            } else {
-                // Agrega elementos al arreglo de carrito
-                productsInCart = [...productsInCart, dataProduct];
-            }
-
-            console.log(productsInCart);
-
-            carritoHTML();
-        }
-        // Muestra el Carrito de compras en el HTML
-        function cartHTML() {
-
-            // Limpiar el HTML
-            cleanHTML();
-
-            // Recorre el carrito y genera el HTML
-
-            productsInCart.forEach(product => {
-                const { image, title, price, quantity, id } = product;
-                html += `
-                <div class="item">
-                    <img class="productImg" src="${image}" alt="">
-                    <div class="details">
-                        <div class="productName">${title}</div>
-                        <div class="priceGroup">
-                            <div class="price">$${price}</div> x
-                            <div class="count">${quantity}</div>
-                            <div class="totalAmount">$${(price * quantity).toFixed()}</div>
-                    </div>
-                    </div>
-                    <img id="btnDelete" src="../assets/images/icon-delete.svg" alt="icon delete">
-                </div>
-                `;
-                // Agregamos el HTML del carrito en el tbody
-                productInShoppingCart.html(html);
-            });
-
-            // Agregar el carrito de compras al storage
-            updateStorage();
-
-        }
-
-        function updateStorage() {
-            localStorage.setItem("cart", JSON.stringify(productsInCart));
-        }
-
-        // Elimina los cursos del tbody
-        function cleanHTML() {
-            // mejor performance para limpiar nuestro HTML
-            while (contenedorCarrito.firstChild) {
-                contenedorCarrito.removeChild(contenedorCarrito.firstChild);
-            }
-        }
+const totalInCart = document.querySelector(".totalInCart");
+const clearCartBtn = document.querySelector(".clearCart");
+const cartCount = document.querySelector(".cartCount");
 
 
-        //cart
+let cart = [];
+let buttonDOM = [];
 
-        $(".btnCart").toggleClass("hidden");
+class UI {
 
-
-
-
-        $("#btnPlus").click(function () {
-            console.log(productCounterValue)
-            setProductCounter(1);
+    renderProducts(products) {
+        let result = ""
+        products.forEach((product) => {
+            result += `
+						<div class="col card" style="width: 40vh;">
+                            <a><img src=${product.image} class="card-img-top"></a>
+                            <div class="card-body">
+                                <h5 class="card-title title">${product.title}</h5>
+                                <p class="card-text price">$${product.price}</p>
+                                <button class="btn btn-primary btnAddToCart" data-id=${product.id} href="#"><img src="./assets/images/icon-cart.svg" alt="icon cart">Add to cart</button>
+                            </div>
+                        </div>
+				`
         });
-        $("#btnMinus").click(function () {
-            console.log(productCounterValue)
-            setProductCounter(-1);
+        productDOM.innerHTML = result
+    }
+
+    getButtons() {
+        const buttons = [...document.querySelectorAll(".btnAddToCart")];
+        buttonDOM = buttons;
+        buttons.forEach((button) => {
+            const id = button.dataset.id;
+            const inCart = cart.find(item => item.id === parseInt(id, 10));
+
+            if (inCart) {
+                button.innerHTML = 'In cart';
+                button.disabled = true;
+            }
+
+            button.addEventListener("click", e => {
+                e.preventDefault();
+                e.target.innerHTML = "In cart";
+                e.target.disabled = true;
+
+                // GET productos al carrito
+                const cartITem = { ...Storage.getProducts(id), quantity: 1 }
+
+                //agregamos el producto al carrito
+                cart = [...cart, cartITem]
+
+                //Guardamos el carrito al localstorage
+                Storage.saveCart(cart)
+
+                //Set cart values
+                this.setItemValues(cart)
+                this.addCartItem(cartITem)
+                //Show al carrito
+            })
+        })
+    }
+
+
+    setItemValues(cart) {
+        let tempTotal = 0;
+        let itemTotal = 0;
+        cart.map(item => {
+            tempTotal += item.price * item.quantity;
+            itemTotal += item.quantity;
+        });
+        totalInCart.innerText = parseFloat(tempTotal.toFixed(2));
+        cartCount.innerText = itemTotal;
+
+    }
+
+    addCartItem({ image, price, title, id }) {
+        const div = document.createElement("div");
+
+        div.innerHTML = `
+					<div class="item">
+                        <img class="productImg" src=${image} alt=${title}>
+                        <div class="details">
+                            <div class="productName">${title}</div>
+                            <div class="priceGroup">
+                                <div class="price">${price}</div> x
+                                <div class="cartCounter">
+                                    <a class="decrease btnArrowMinus" data-id=${id}>-</a>
+                                    <span class="itemQuantity">1</span>
+                                    <a class="increase btnArrowPlus" data-id=${id}>+</a>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <a href="#" class="removeProduct" data-id=${id}><img class="btnDelete" src="./assets/images/icon-delete.svg"</a>
+                    </div>
+		`
+        productsInCart.appendChild(div);
+    }
+
+    setAPP() {
+        cart = Storage.getCart();
+        this.setItemValues(cart);
+        this.populate(cart);
+    }
+
+    populate(cart) {
+        cart.forEach(item => this.addCartItem(item));
+    }
+    cartLogic() {
+        clearCartBtn.addEventListener("click", () => {
+            this.clearCart();
         });
 
-        function setProductCounter(value) {
-            if ((productCounterValue + value) > 0) {
-                productCounterValue += value;
-                productCounter.text(productCounterValue);
+        productsInCart.addEventListener("click", e => {
+            const target = e.target.closest("a");
+            const targetElement = target.classList.contains("removeProduct");
+            console.log(target);
+            console.log(targetElement);
+            if (!target) return
+            if (targetElement) {
+                const id = parseInt(target.dataset.id);
+                this.removeItem(id)
+                productsInCart.removeChild(target.parentElement.parentElement);
+            } else if (target.classList.contains("increase")) {
+                const id = parseInt(target.dataset.id, 10);
+                let tempItem = cart.find(item => item.id === id);
+                tempItem.quantity++;
+                Storage.saveCart(cart)
+                this.setItemValues(cart)
+                target.previousElementSibling.innerText = tempItem.quantity;
+            } else if (target.classList.contains("decrease")) {
+                const id = parseInt(target.dataset.id, 10);
+                let tempItem = cart.find(item => item.id === id);
+                tempItem.quantity--;
 
-            }
-        }
-
-
-        function updateCart() {
-            updateCartIcon();
-            updateMsgEmpty();
-            updateCheckoutButton();
-        }
-
-        function updateCartIcon() {
-            cartCount.text(productNmr);
-            if ((counter == 0) && (!cartCount.hasClass("hidden"))) {
-                cartCount.hide();
-            } else {
-                cartCount.show();
-            }
-        }
-
-
-        function updateMsgEmpty() {
-            if ((productNmr == 0) && (msgEmpty.hasClass("hidden"))) {
-                msgEmpty.show();
-            } else {
-                if (!msgEmpty.hasClass("hidden")) {
-                    msgEmpty.hide();
+                if (tempItem.quantity > 0) {
+                    Storage.saveCart(cart);
+                    this.setItemValues(cart);
+                    target.nextElementSibling.innerText = tempItem.quantity;
+                } else {
+                    this.removeItem(id);
+                    productsInCart.removeChild(target.parentElement.parentElement);
                 }
             }
+        });
+    }
+    clearCart() {
+        const cartItems = cart.map(item => item.id);
+        cartItems.forEach(id => this.removeItem(id));
 
+        while (productsInCart.children.length > 0) {
+            productsInCart.removeChild(productsInCart.children[0]);
         }
+    }
+    removeItem(id) {
+        cart = cart.filter(item => item.id !== id);
+        this.setItemValues(cart)
+        Storage.saveCart(cart)
+        let button = this.singleButton(id);
+        if (button) {
+            button.disabled = false;
+            button.innerHTML = '<img src="./assets/images/icon-cart.svg" alt="icon cart">Add to cart'
+        }
+    }
+    singleButton(id) {
+        return buttonDOM.find(button => parseInt(button.dataset.id) === id);
+    }
+}
 
-        function updateCheckoutButton() {
-            if ((productNmr == 0) && (!checkout.hasClass("hidden"))) {
-                checkout.show();
-            } else {
-                checkout.hide();
-            }
+
+
+class Storage {
+    static saveProduct(obj) {
+        localStorage.setItem("products", JSON.stringify(obj));
+    }
+    static saveCart(cart) {
+        localStorage.setItem("cart", JSON.stringify(cart));
+    }
+    static getProducts(id) {
+        const product = JSON.parse(localStorage.getItem("products"));
+        return product.find(product => product.id === parseFloat(id, 10));
+    }
+    static getCart() {
+        return localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [];
+    }
+}
+
+class Products {
+    async getProducts() {
+        try {
+            const result = await fetch("./json/products.json");
+            const data = await result.json();
+            const products = data.items;
+            return products;
+        } catch (err) {
+            console.log(err);
         }
-    });
-})
+    }
+}
+
+let category = "";
+let products = [];
+
+function categoryValue() {
+    const ui = new UI();
+
+    category = document.getElementById("category").value;
+    if (category.length > 0) {
+        const product = products.filter(show => show.category === category);
+        ui.renderProducts(product);
+        ui.getButtons();
+    } else {
+        ui.renderProducts(products);
+        ui.getButtons();
+
+    }
+}
+
+const query = new URLSearchParams(window.location.search);
+let id = query.get('id');
+
+document.addEventListener("DOMContentLoaded", async () => {
+    const productsList = new Products();
+    const ui = new UI();
+
+    ui.setAPP();
+
+    products = await productsList.getProducts();
+    if (id) {
+
+        Storage.saveProduct(products);
+        ui.getButtons();
+        ui.cartLogic();
+    } else {
+        ui.renderProducts(products);
+        Storage.saveProduct(products);
+        ui.getButtons();
+        ui.cartLogic();
+    }
+});
+

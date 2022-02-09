@@ -3,10 +3,39 @@ main {
     align-items: center;
     justify-content: center;
     width: 100%;
-    .headerSlider {
+    .filterBackground {
+        justify-content: center;
+        align-items: center;
         height: 30vh;
-        background: rgb(2,0,36);
         background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,212,255,1) 0%, rgba(0,91,255,1) 50%, rgba(0,212,255,1) 82%);
+        .filter{
+            position: relative;
+            top: 50%;
+            left: 5%;
+            width: 100%;
+            gap: 2rem;
+            h2 {
+                font-weight: 700;
+
+                color: white;
+            }
+            .filterContainer{
+                width: auto;
+                .div{
+                    width: 100%;
+                    input{
+                        margin: 1rem;
+                        width: 55%;
+                        height: 3rem;
+                    }
+                }
+                select {
+                    margin: 1rem;
+                    width: 15%;
+                    height: 2rem;
+                }
+            }
+        }
     }
     .productsContainer {
         width: 100%;
@@ -16,9 +45,9 @@ main {
             margin: 2rem;
             height: 50vh;
             img {
-            margin: 2rem;
-            height: 25vh;
-            width: 35vh;
+            margin: 1rem;
+            height: 90%;
+            width: 90%;
             }
             .card-body {
             margin: 1rem;

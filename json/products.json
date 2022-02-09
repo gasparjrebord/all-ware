@@ -1,0 +1,68 @@
+{
+    "status": "success",
+    "items": [
+        {
+            "id": 1,
+            "title": "Notebook Asus VivoBook F412DA, AMD Ryzen 7 8GB de RAM 512GB SSD, AMD Radeon RX Vega 10 60 Hz Windows 10 Home",
+            "image": "https://http2.mlstatic.com/D_NQ_NP_913944-MLA44973386650_022021-O.webp",
+            "price": 149999,
+            "category": "asus"
+        },
+        {
+            "id": 2,
+            "title": "Notebook Dell Vostro 3405 Ryzen 5 16GB SSD256 Windows 10 Home",
+            "image": "https://http2.mlstatic.com/D_NQ_NP_609437-MLA45454571715_042021-O.webp",
+            "price": 109999,
+            "category": "dell"
+        },
+        {
+            "id": 3,
+            "title": "Notebook HP 240 G7, Intel Celeron N4000 4GB de RAM 500GB HDD, Intel UHD Graphics 600 FreeDOS",
+            "image": "https://http2.mlstatic.com/D_NQ_NP_624064-MLA46706832156_072021-O.webp",
+            "price": 46999,
+            "category": "hp"
+        },
+        {
+            "id": 4,
+            "title": "Notebook EXO Intel Core i5-1115G4 2.40 hasta 4.20 GHz. Capacidad 1 Tb HDD  RAM 8 Gb",
+            "image": "https://http2.mlstatic.com/D_NQ_NP_853557-MLA48644020952_122021-O.webp",
+            "price": 139999,
+            "category": "exo"
+        },
+        {
+            "id": 5,
+            "title": "NOTEBOOK DELL LATITUDE 3190 N4120 4GB 128GB W10H",
+            "image": "https://http2.mlstatic.com/D_NQ_NP_822865-MLA47932613301_102021-O.webp",
+            "price": 52999,
+            "category": "dell"
+        },
+        {
+            "id": 6,
+            "title": "Apple Macbook Air 13 Pulgadas M1 8gb 256gb Retina Space Gray",
+            "image": "https://http2.mlstatic.com/D_NQ_NP_801112-MLA46516512347_062021-O.webp",
+            "price": 209999,
+            "category": "apple"
+        },
+        {
+            "id": 7,
+            "title": "Notebook Dell Inspiron 5502 Intel I5 16gb 256ssd Windows 10 Home",
+            "image": "https://http2.mlstatic.com/D_NQ_NP_790874-MLA44939295335_022021-O.webp",
+            "price": 141999,
+            "category": "dell"
+        },
+        {
+            "id": 8,
+            "title": "Notebook HP 15-dy2061la Windows 10 Home",
+            "image": "https://http2.mlstatic.com/D_NQ_NP_837351-MLA48454099663_122021-V.webp",
+            "price": 96999,
+            "category": "hp"
+        },
+        {
+            "id": 9,
+            "title": "Notebook HP 14-cf2532la Windows 10 Home",
+            "image": "https://http2.mlstatic.com/D_NQ_NP_954041-MLA46302470460_062021-O.webp",
+            "price": 67999,
+            "category": "hp"
+        }
+    ]
+}

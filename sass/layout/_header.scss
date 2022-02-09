@@ -166,7 +166,7 @@ header {
 		border-radius: 1rem;
 		box-shadow: 0 1rem 1rem 1rem rgba(0, 0, 0, 0.1), 0 1rem 2rem 1rem rgba(0, 0, 0, 0.1);
 		@include laptop {
-			right: 7rem;
+			right: 7rem; 
 			top: 90%;
 		}
 		.cartHeader {
@@ -188,10 +188,29 @@ header {
 				.details {
 					color: $dark-grayish-blue;
 					font-size: 1.5rem;
-					line-height: 2.5rem;
+					line-height: 2rem;
+					.productName {
+						white-space: nowrap; 
+						width: 20rem;
+						overflow: hidden;
+						text-overflow: ellipsis; 
+					}
 					.priceGroup {
 						display: flex;
 						gap: 0.5rem;
+						.cartCounter {
+							align-items: center;
+							
+							cursor: pointer;
+							.btnArrowMinus {
+								text-decoration: none;
+								font-weight: 1000;
+							}
+							.btnArrowPlus {
+								text-decoration: none;
+								font-weight: 1000;
+							}
+						}
 						.totalAmount {
 							font-weight: 700;
 							font-size: 2rem;
@@ -209,24 +228,31 @@ header {
 				}
 			}
 		}
-		.msgEmpty {
-			color: $dark-grayish-blue;
-			text-align: center;
-			font-size: 2rem;
-			font-weight: 700;
-			padding: 8rem 0;
+		.cartFooter {
+			display: flex;
+			justify-content: space-between;
+			h3 {
+				text-align: center;
+				font-weight: 700;
+				font-size: 1,7rem;
+				color: $teal-blue;
+				margin-top: 2rem;
+				margin-left: 2rem;
+				padding-top: 2rem;
+			}
+			.clearCart {
+				background-color: $teal-blue;
+				color: $white;
+				text-align: center;
+				font-size: 1.5rem;
+				font-weight: 700;
+				margin: 2.5rem;
+				padding: 2rem;
+				border-radius: 1rem;
+				cursor: pointer;
+			}
 		}
-		.checkout {
-			background-color: $teal-blue;
-			color: $white;
-			text-align: center;
-			font-size: 1.5rem;
-			font-weight: 700;
-			margin: 2.5rem;
-			padding: 2rem;
-			border-radius: 1rem;
-			cursor: pointer;
-		}
+		
 		.hidden {
 			display: none;
 		}

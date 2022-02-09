@@ -30,7 +30,6 @@
                         <img id="btnMenuClose" src="./assets/images/icon-close.svg" alt="icon close">
                         <ul>
                             <li><a href="#">Inicio</a></li>
-                            <li><a href="#">Categorias</a></li>
                             <li><a href="#">Sobre nosotros</a></li>
                         </ul>
                     </div>
@@ -39,49 +38,48 @@
             <div class="cartAvatar">
                 <div class="btnCart">
                     <img src="./assets/images/icon-cart.svg" alt="cart icon">
-                    <div class="cartCount hidden">3</div>
+                    <div class="cartCount">0</div>
                 </div>
                 <img class="avatar" src="./assets/images/image-avatar.png" alt="image avatar">
             </div>
             <div class="cart hidden">
                 <div class="cartHeader">Cart</div>
                 <div class="productsInCart"></div>
-                <div class="msgEmpty">Your cart is empty.</div>
-                <div class="checkout hidden">Checkout</div>
+                <div class="cartFooter">
+                    <h3>Total: $ <span class="totalInCart">0</span></h3>
+                    <button class="clearCart btn">Empty cart</button>
+                </div>
             </div>
         </header>
         <main>
-            <div>
-                <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <div class="headerSlider d-block w-100"></div>
+            <div class="filterBackground">
+                <section class="filter">
+                    <h2>Encontra las mejores computadoras del mercado en !ALLWARE></h2>
+                    <div class="filterContainer">
+                        <div class="div">
+                            <label for="search"><span><i class="searchBox"></i></span></label>
+                            <input type="text" id="search" placeholder="Buscar computadoras...">
                         </div>
-                        <div class="carousel-item">
-                            <div class="headerSlider d-block w-100"></div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="headerSlider d-block w-100"></div>
+                        <div class="category">
+                            <select id="category" onclick="categoryValue()">
+                                <option value="">Marcas</option>
+                                <option value="asus">Asus</option>
+                                <option value="dell">Dell</option>
+                                <option value="hp">HP</option>
+                                <option value="exo">Exo</option>
+                                <option value="apple">Apple</option>
+                            </select>
                         </div>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade"
-                        data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade"
-                        data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
+                </section>
             </div>
+            <!--Filter-->
+
+
             <div class="row row-cols-3 productsContainer" id="allProducts">
 
             </div>
-            <section id="overlayProducts">
 
-            </section>
         </main>
         <footer>
             <div class="footer">

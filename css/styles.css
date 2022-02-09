@@ -226,10 +226,24 @@ header {
       header .cart .productsInCart .item .details {
         color: #0077b6;
         font-size: 1.5rem;
-        line-height: 2.5rem; }
+        line-height: 2rem; }
+        header .cart .productsInCart .item .details .productName {
+          white-space: nowrap;
+          width: 20rem;
+          overflow: hidden;
+          text-overflow: ellipsis; }
         header .cart .productsInCart .item .details .priceGroup {
           display: flex;
           gap: 0.5rem; }
+          header .cart .productsInCart .item .details .priceGroup .cartCounter {
+            align-items: center;
+            cursor: pointer; }
+            header .cart .productsInCart .item .details .priceGroup .cartCounter .btnArrowMinus {
+              text-decoration: none;
+              font-weight: 1000; }
+            header .cart .productsInCart .item .details .priceGroup .cartCounter .btnArrowPlus {
+              text-decoration: none;
+              font-weight: 1000; }
           header .cart .productsInCart .item .details .priceGroup .totalAmount {
             font-weight: 700;
             font-size: 2rem;
@@ -240,22 +254,27 @@ header {
         header .cart .productsInCart .item #btnDelete:hover {
           cursor: pointer;
           background-color: #90e0ef; }
-    header .cart .msgEmpty {
-      color: #0077b6;
-      text-align: center;
-      font-size: 2rem;
-      font-weight: 700;
-      padding: 8rem 0; }
-    header .cart .checkout {
-      background-color: #0096c7;
-      color: #ffffff;
-      text-align: center;
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin: 2.5rem;
-      padding: 2rem;
-      border-radius: 1rem;
-      cursor: pointer; }
+    header .cart .cartFooter {
+      display: flex;
+      justify-content: space-between; }
+      header .cart .cartFooter h3 {
+        text-align: center;
+        font-weight: 700;
+        font-size: 1,7rem;
+        color: #0096c7;
+        margin-top: 2rem;
+        margin-left: 2rem;
+        padding-top: 2rem; }
+      header .cart .cartFooter .clearCart {
+        background-color: #0096c7;
+        color: #ffffff;
+        text-align: center;
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin: 2.5rem;
+        padding: 2rem;
+        border-radius: 1rem;
+        cursor: pointer; }
     header .cart .hidden {
       display: none; }
   header .hidden {
@@ -266,10 +285,32 @@ main {
   align-items: center;
   justify-content: center;
   width: 100%; }
-  main .headerSlider {
+  main .filterBackground {
+    justify-content: center;
+    align-items: center;
     height: 30vh;
-    background: #020024;
     background: linear-gradient(90deg, #020024 0%, #00d4ff 0%, #005bff 50%, #00d4ff 82%); }
+    main .filterBackground .filter {
+      position: relative;
+      top: 50%;
+      left: 5%;
+      width: 100%;
+      gap: 2rem; }
+      main .filterBackground .filter h2 {
+        font-weight: 700;
+        color: white; }
+      main .filterBackground .filter .filterContainer {
+        width: auto; }
+        main .filterBackground .filter .filterContainer .div {
+          width: 100%; }
+          main .filterBackground .filter .filterContainer .div input {
+            margin: 1rem;
+            width: 55%;
+            height: 3rem; }
+        main .filterBackground .filter .filterContainer select {
+          margin: 1rem;
+          width: 15%;
+          height: 2rem; }
   main .productsContainer {
     width: 100%;
     align-items: center;
@@ -278,9 +319,9 @@ main {
       margin: 2rem;
       height: 50vh; }
       main .productsContainer .card img {
-        margin: 2rem;
-        height: 25vh;
-        width: 35vh; }
+        margin: 1rem;
+        height: 90%;
+        width: 90%; }
       main .productsContainer .card .card-body {
         margin: 1rem; }
         main .productsContainer .card .card-body .card-title {
